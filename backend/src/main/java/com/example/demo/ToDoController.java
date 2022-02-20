@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,5 +24,10 @@ public class ToDoController {
     @GetMapping("/{deadLineDate")
     public List <ToDos> getToDo(@PathVariable String deadLineDate){
         return toDoService.getToDos(deadLineDate);
+    }
+
+    @PostMapping
+    public void createToDo (@RequestBody ToDos toDos){
+        toDoService.createToDo(toDos);
     }
 }

@@ -2,25 +2,29 @@ package com.example.demo;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Repository
 public class ToDoRepo {
 
-    private List<ToDos> toDosList = new ArrayList<>();
+    private Map<String, ToDos> toDosList = new HashMap<>();
 
-    public List<ToDos> getToDos(){
-        return toDosList;
+    public void save (ToDos toDo) {
+        toDosList.put(toDo.getToDoId(), toDo);
+    }
+    public Collection<ToDos> findAll(){
+        return toDosList.values();
     }
 
-    public void createToDo (ToDos toDos) {
-        toDosList.add(toDos);
+    public ToDos findById (String id) {
+        return toDosList.get(id);
     }
 
-    public List<ToDos> getToDos(String deadLineDate) {
-       return toDosList.stream().filter(dld -> dld.getDeadLineDate().equals(deadLineDate)).toList();
+    public void delete(String id) {
+        toDosList.remove(id);
     }
+
 }

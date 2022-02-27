@@ -1,15 +1,18 @@
 package com.example.demo;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class ToDos {
 
     private String toDo;
-    private String deadLineDate;
+    private String id;
+    private ToDoStatus status = ToDoStatus.Open;
 
-    public ToDos(String toDo, String deadLineDate) {
+    public ToDos(String toDo, String id) {
         this.toDo = toDo;
-        this.deadLineDate = deadLineDate;
+        this.id = UUID.randomUUID().toString();
+
     }
 
     public String getToDo() {
@@ -20,12 +23,16 @@ public class ToDos {
         this.toDo = toDo;
     }
 
-    public String getDeadLineDate() {
-        return deadLineDate;
+    public String getToDoId() {
+        return id;
     }
 
-    public void setDeadLineDate(String deadLineDate) {
-        this.deadLineDate = deadLineDate;
+    public ToDoStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ToDoStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -33,12 +40,11 @@ public class ToDos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ToDos toDos = (ToDos) o;
-        return Objects.equals(toDo, toDos.toDo) && Objects.equals(deadLineDate, toDos.deadLineDate);
+        return Objects.equals(toDo, toDos.toDo) && Objects.equals(id, toDos.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(toDo, deadLineDate);
+        return Objects.hash(toDo, id);
     }
-
 }

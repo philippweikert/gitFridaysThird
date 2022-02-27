@@ -2,7 +2,7 @@ package com.example.demo;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 
 @Service
 public class ToDoService {
@@ -12,16 +12,30 @@ public class ToDoService {
     public ToDoService(ToDoRepo toDoRepo){
         this.toDoRepo = toDoRepo;
     }
-
-    public List<ToDos> getToDos(){
-        return toDoRepo.getToDos();
-    }
-
+    
     public void createToDo (ToDos toDos){
-        toDoRepo.createToDo(toDos);
+        toDoRepo.save(toDos);
     }
 
-    public List <ToDos> getToDos(String deadLineDate) {
-        return toDoRepo.getToDos(deadLineDate);
+    public Collection<ToDos> getToDos(){
+        return toDoRepo.findAll();
     }
+
+   public ToDos getToDos (String id) {
+        return toDoRepo.findById(id);
+    }
+
+    public void deleteToDo (String id) {
+        toDoRepo.delete(id);
+    }
+
+    public void changeToDo (String id, ToDos changedToDo) {
+        ToDos toDos = toDoRepo.findById(id);
+
+        toDos.setStatus (changedToDo.getStatus());
+        toDos.setToDo(changedToDo.getToDo());
+
+        toDoRepo.save(toDos);
+    }
+
 }

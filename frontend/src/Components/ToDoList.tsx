@@ -15,11 +15,6 @@ export default function ToDoList () {
     const requestBody = {
         toDos: toDos
     }
-    const getToDoById = () => {
-        fetch(`http://localhost:8080/todolist`, {method: 'POST', body:JSON.stringify(requestBody)})
-            .then(response => response.json())
-            .then(responseBody : Array<string>) => set
-    }
 
     return (
         <div>

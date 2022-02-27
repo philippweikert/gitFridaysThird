@@ -1,4 +1,4 @@
-package com.example.demo;
+package de.neuefische.todoapp;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,6 @@ public class ToDoController {
 
     public ToDoController(ToDoService toDoService){
         this.toDoService = toDoService;
-
     }
 
     @GetMapping

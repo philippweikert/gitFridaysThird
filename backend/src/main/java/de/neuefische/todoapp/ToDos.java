@@ -1,7 +1,8 @@
-package com.example.demo;
+package de.neuefische.todoapp;
 
 import java.util.Objects;
 import java.util.UUID;
+
 
 public class ToDos {
 

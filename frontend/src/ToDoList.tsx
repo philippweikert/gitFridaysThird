@@ -10,8 +10,13 @@ export default function ToDoList() {
     const fetchAll = () => {
       fetch('http://localhost:8080/todolist')
           .then(response => response.json())
-          .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend)
-          )
+          .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend));
+    }
+
+    const deleteChecked = () => {
+        fetch('http://localhost:8080' , {method: 'DELETE'})
+            .then(response => response.json())
+            .then((toDosFromBackend : Array<ToDo>) => setToDos(toDosFromBackend));
     }
 
     useEffect(() => {
@@ -19,9 +24,16 @@ export default function ToDoList() {
     }, []);
 
     return (
-        <div>
-            <ToDoForm onToDoCreation={setToDos}/>
-            {toDos.map(task => <ToDoElement key={task.id} toDoItem={task} onToDoDeletion={fetchAll} onToDoChange={setToDos}/>)}
+        <div className={'todo-list'}>
+            <div>
+                <ToDoForm onToDoCreation={setToDos} />
+            </div>
+            <div>
+                <button onClick={deleteChecked} >Alle erledigten auf die Halde</button>
+            </div>
+            <ul>
+            {toDos.map(task => <li key={task.id}><ToDoElement toDoItem={task} onToDoDeletion={fetchAll} onToDoChange={setToDos}/></li>)}
+            </ul>
         </div>
     )
 

@@ -10,18 +10,18 @@ import java.util.Collection;
 @Service
 public class ToDoService {
 
-    private ToDoRepo toDoRepo;
+    private final ToDoRepo toDoRepo;
 
-    public ToDoService(ToDoRepo toDoRepo){
-        this.toDoRepo = toDoRepo;
-    }
     
     public void createToDo (ToDos toDos){
         toDoRepo.save(toDos);
     }
 
     public Collection<ToDos> getToDos(){
-        return toDoRepo.findAll();
+        return toDoRepo.findAll()
+                .stream()
+                .sorted()
+                .toList();
     }
 
    public ToDos getToDos (String id) {
@@ -39,6 +39,14 @@ public class ToDoService {
         toDos.setToDo(changedToDo.getToDo());
 
         toDoRepo.save(toDos);
+    }
+
+    public void deleteCheckedToDos(){
+        toDoRepo.findAll()
+                .stream()
+                .filter(toDos -> toDos.getStatus() == ToDoStatus.Done)
+                .toList()
+                .forEach(toDos -> toDoRepo.delete(toDos.getId()));
     }
 
 }

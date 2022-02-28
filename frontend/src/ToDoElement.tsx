@@ -22,7 +22,7 @@ export default function ToDoElement (props: ToDoElementProps) {
         fetch(`http://localhost:8080/todolist/${props.toDoItem.id}`, {
             method: 'PUT',
             headers: {
-                'Content_Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: props.toDoItem.id,

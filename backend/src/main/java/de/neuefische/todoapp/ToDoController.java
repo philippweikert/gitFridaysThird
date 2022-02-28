@@ -12,11 +12,8 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class ToDoController {
 
-    private ToDoService toDoService;
+    private final ToDoService toDoService;
 
-    public ToDoController(ToDoService toDoService){
-        this.toDoService = toDoService;
-    }
 
     @GetMapping
     public Collection<ToDos> getToDos() {
@@ -36,15 +33,20 @@ public class ToDoController {
     }
 
     @DeleteMapping("/{id}")
-    public Collection<ToDos> deleteTodo(@PathVariable String id) {
+    public Collection<ToDos> deleteToDo (@PathVariable String id) {
         toDoService.deleteToDo(id);
         return toDoService.getToDos();
     }
 
     @PutMapping("/{id}")
-    public Collection<ToDos> changeTodo(@PathVariable String id, @RequestBody ToDos toDos) {
+    public Collection<ToDos> changeToDo (@PathVariable String id, @RequestBody ToDos toDos) {
         toDoService.changeToDo(id, toDos);
         return toDoService.getToDos();
     }
 
+    @DeleteMapping()
+    public Collection<ToDos>deleteToDo() {
+        toDoService.deleteCheckedToDos();
+        return toDoService.getToDos();
+    }
 }

@@ -20,13 +20,16 @@ export default function ToDoForm (props: ToDoFormProps) {
             })
         })
             .then(response => response.json())
-            .then((toDosFromBackend: Array<ToDo>) => props.onToDoCreation(toDosFromBackend))
+            .then((toDosFromBackend: Array<ToDo>) => {
+                setToDo('');
+                props.onToDoCreation(toDosFromBackend);
+            });
     }
 
     return (
         <div>
             <input type={'text'} placeholder={'Was ist zu tun?'} value={toDo} onChange = {event => setToDo(event.target.value)}/>
-            <button onClick={addToDo}>Arbeit! Arbeit!</button>
+            <button onClick={addToDo} className={'send.button'}>Arbeit! Arbeit!</button>
         </div>
     )
 }

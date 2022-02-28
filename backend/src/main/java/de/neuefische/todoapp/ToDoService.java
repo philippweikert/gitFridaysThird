@@ -1,9 +1,12 @@
 package de.neuefische.todoapp;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+
+@RequiredArgsConstructor
 @Service
 public class ToDoService {
 

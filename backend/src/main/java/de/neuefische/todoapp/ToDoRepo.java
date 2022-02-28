@@ -13,7 +13,7 @@ public class ToDoRepo {
     private Map<String, ToDos> toDosList = new HashMap<>();
 
     public void save (ToDos toDo) {
-        toDosList.put(toDo.getToDoId(), toDo);
+        toDosList.put(toDo.getId(), toDo);
     }
     public Collection<ToDos> findAll(){
         return toDosList.values();

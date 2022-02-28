@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import ToDoList from "./Components/ToDoList";
-//import "./App.css";
+import React from 'react';
+import ToDoList from "./ToDoList";
 
 function App() {
 

@@ -1,5 +1,6 @@
 package de.neuefische.todoapp;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/todolist")
 @CrossOrigin
+@RequiredArgsConstructor
 public class ToDoController {
 
     private ToDoService toDoService;

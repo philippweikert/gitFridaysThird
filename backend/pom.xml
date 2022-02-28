@@ -2,9 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <todo-app-parent.artifactId>spring-boot-react-bundle-parent</todo-app-parent.artifactId>
+    </properties>
     <parent>
-        <groupId>com.github.gossie</groupId>
-        <artifactId>spring-boot-react-bundle-parent</artifactId>
+        <groupId>com.github.philippweikert</groupId>
+        <artifactId>todo-app-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>spring-boot-react-bundle-backend</artifactId>
@@ -21,6 +24,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 

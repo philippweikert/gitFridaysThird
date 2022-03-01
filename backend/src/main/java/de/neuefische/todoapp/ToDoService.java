@@ -37,6 +37,7 @@ public class ToDoService {
 
         toDos.setStatus (changedToDo.getStatus());
         toDos.setToDo(changedToDo.getToDo());
+        toDos.setDate(changedToDo.getDate());
 
         toDoRepo.save(toDos);
     }

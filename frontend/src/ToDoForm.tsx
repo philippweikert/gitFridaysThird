@@ -8,6 +8,7 @@ interface ToDoFormProps {
 export default function ToDoForm (props: ToDoFormProps) {
 
     const [toDo, setToDo] = useState('');
+    const [date, setDate] = useState('');
 
     const addToDo = () => {
         fetch('http://localhost:8080/todolist', {
@@ -17,16 +18,22 @@ export default function ToDoForm (props: ToDoFormProps) {
             },
             body: JSON.stringify({
                 toDo: toDo,
+                date: date,
             })
         })
             .then(response => response.json())
-            .then((toDosFromBackend: Array<ToDo>) => props.onToDoCreation(toDosFromBackend))
+            .then((toDosFromBackend: Array<ToDo>) => {
+                setToDo('');
+                setDate('');
+                props.onToDoCreation(toDosFromBackend);
+            });
     }
 
     return (
         <div>
             <input type={'text'} placeholder={'Was ist zu tun?'} value={toDo} onChange = {event => setToDo(event.target.value)}/>
-            <button onClick={addToDo}>Arbeit! Arbeit!</button>
+            <input type={'text'} placeholder={'Bis wann?'} value={date} onChange={event2 => setDate(event2.target.value)}/>
+            <button onClick={addToDo} className={'send.button'}>Arbeit! Arbeit!</button>
         </div>
     )
 }

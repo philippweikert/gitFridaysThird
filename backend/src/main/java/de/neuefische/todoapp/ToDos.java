@@ -13,6 +13,7 @@ public class ToDos implements Comparable<ToDos> {
     private String id = UUID.randomUUID().toString();
     private String toDo = "";
     private ToDoStatus status = ToDoStatus.Open;
+    private String date = "";
 
     @Override
     public int compareTo(ToDos toDos){

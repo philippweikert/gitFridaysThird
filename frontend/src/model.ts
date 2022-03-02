@@ -1,6 +1,7 @@
 export interface ToDo {
     id: string;
     toDo: string;
+    date: string;
     status: Status;
 }
 

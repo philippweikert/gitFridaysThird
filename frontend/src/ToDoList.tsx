@@ -14,7 +14,8 @@ export default function ToDoList() {
     }
 
     const deleteChecked = () => {
-        fetch('http://localhost:8080' , {method: 'DELETE'})
+        fetch('http://localhost:8080/todolist' ,
+            {method: 'DELETE'})
             .then(response => response.json())
             .then((toDosFromBackend : Array<ToDo>) => setToDos(toDosFromBackend));
     }
@@ -29,7 +30,7 @@ export default function ToDoList() {
                 <ToDoForm onToDoCreation={setToDos} />
             </div>
             <div>
-                <button onClick={deleteChecked} >Alle erledigten auf die Halde</button>
+                <button onClick={deleteChecked} >Arbeit ist vollbracht!</button>
             </div>
             <ul>
             {toDos.map(task => <li key={task.id}><ToDoElement toDoItem={task} onToDoDeletion={fetchAll} onToDoChange={setToDos}/></li>)}

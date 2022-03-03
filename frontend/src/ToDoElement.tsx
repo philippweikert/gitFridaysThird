@@ -1,5 +1,6 @@
 import {Status, ToDo} from "./model";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 
 interface ToDoElementProps {
@@ -10,12 +11,14 @@ interface ToDoElementProps {
 
 export default function ToDoElement(props: ToDoElementProps) {
 
+    const {t} = useTranslation();
+
     const [toDoToEdit, setToDoToEdit] = useState(props.toDoItem.toDo);
     const [dateToEdit, setDateToEdit] = useState(props.toDoItem.date);
     const [editMode, setEditMode] = useState(false);
 
     const deleteToDo = () => {
-        fetch(`http://localhost:8080/todolist/${props.toDoItem.id}`,
+        fetch(`${process.env.REACT_APP_BASE_URL}/todolist/${props.toDoItem.id}`,
             {
                 method: 'DELETE'
             })
@@ -23,7 +26,7 @@ export default function ToDoElement(props: ToDoElementProps) {
     };
 
     const fetchToEdit = (ToDoElement: ToDo) => {
-        fetch(`http://localhost:8080/todolist/${props.toDoItem.id}`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}/todolist/${props.toDoItem.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -71,12 +74,12 @@ export default function ToDoElement(props: ToDoElementProps) {
                     <div>
                         <span className={props.toDoItem.status === Status.Done ? 'selected' : ''}
                               onClick={toggle}>{props.toDoItem.toDo} </span>
-                        <button onClick={() => setEditMode(true)}>Anpassen!</button>
-                        <button onClick={deleteToDo}>Weg damit!</button>
+                        <button onClick={() => setEditMode(true)}>{t('change')}</button>
+                        <button onClick={deleteToDo}>{t('delete')}</button>
                     </div>
 
             }
-            </div>
+                    </div>
     )
 }
 

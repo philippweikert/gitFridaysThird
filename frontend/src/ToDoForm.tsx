@@ -1,5 +1,6 @@
 import {useState} from "react"
 import {ToDo} from "./model";
+import {useTranslation} from "react-i18next";
 
 interface ToDoFormProps {
     onToDoCreation: (toDoItems: Array<ToDo>) => void;
@@ -10,8 +11,10 @@ export default function ToDoForm (props: ToDoFormProps) {
     const [toDo, setToDo] = useState('');
     const [date, setDate] = useState('');
 
+    const{t} =useTranslation();
+
     const addToDo = () => {
-        fetch('http://localhost:8080/todolist', {
+        fetch(`${process.env.REACT_APP_BASE_URL}/todolist`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,9 +34,9 @@ export default function ToDoForm (props: ToDoFormProps) {
 
     return (
         <div>
-            <input type={'text'} placeholder={'Was ist zu tun?'} value={toDo} onChange = {event => setToDo(event.target.value)}/>
-            <input type={'text'} placeholder={'Bis wann?'} value={date} onChange={event2 => setDate(event2.target.value)}/>
-            <button onClick={addToDo} className={'send.button'}>Arbeit! Arbeit!</button>
+            <input type={'text'} placeholder={t('task')} value={toDo} onChange = {event => setToDo(event.target.value)}/>
+            <input type={'text'} placeholder={t('date')} value={date} onChange={event2 => setDate(event2.target.value)}/>
+            <button onClick={addToDo} className={'send.button'}>{t('send')}</button>
         </div>
     )
 }

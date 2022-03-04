@@ -1,9 +1,9 @@
 {
-  "change": "Anpassen!",
+  "change": "Anpassung vornehmen!",
   "task": "Was ist zu tun?",
   "done-button": "Arbeit ist vollbracht!",
   "delete": "Weg damit!",
   "date": "Bis wann?",
-  "send": "Eingabe!"
-
+  "send": "Eingabe!",
+  "change-button": "Anpassung speichern!"
 }

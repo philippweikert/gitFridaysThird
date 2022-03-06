@@ -1,17 +1,17 @@
 import React from 'react';
-import ToDoList from "./ToDoList/ToDoList";
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import ToDoDetails from "./ToDoDetails";
-import ToDoElement from "./ToDoElement/ToDoElement";
+import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 function App() {
 
+    const {t} = useTranslation();
+
 
     return (
         <div>
-            <h1>Was haben wir schon wieder alles vergessen?</h1>
-            <Link to="/ToDoDetails">...</Link>
+            <h1>{t('headline')}</h1>
+            <Link to="/ToDoDetails">{t('detail-link')}</Link>
         </div>
     );
 }

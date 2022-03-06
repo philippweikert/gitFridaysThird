@@ -5,5 +5,7 @@
   "delete": "Delete!",
   "date": "Until when?",
   "send": "Enter!",
-  "change-button": "Confirm changes!"
+  "change-button": "Confirm changes!",
+  "detail-button": "This way, friendo!",
+  "headline": "My little Helper"
 }

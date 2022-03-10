@@ -12,7 +12,7 @@ export default function ToDoDetails() {
         fetch('http://localhost:8080/todolist' + params.id)
             .then(response => response.json())
             .then((toDo: ToDo) => setToDoDetail(toDo))
-    }, [])
+    }, [params.id])
 
     return (
 

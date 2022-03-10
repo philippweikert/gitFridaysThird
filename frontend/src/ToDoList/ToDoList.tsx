@@ -10,30 +10,32 @@ export default function ToDoList() {
 
     const [toDos, setToDos] = useState([] as Array<ToDo>)
     const [errorMessage, setErrorMessage] = useState('')
+    const [task, getTask] = useState(localStorage.getItem("task") ?? '');
+    const [date, getDate] = useState(localStorage.getItem("date") ?? '')
 
 
     const fetchAll = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/todolist`)
-          .then(response => {
-              if (response.status === 200) {
-                  return response.json()
-              }
-              throw new Error("Das war wohl nix!")
-          })
-          .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend))
-          .catch((ev: Error) => setErrorMessage(ev.message))
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                throw new Error("Das war wohl nix!")
+            })
+            .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend))
+            .catch((ev: Error) => setErrorMessage(ev.message))
     }
 
     const deleteChecked = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/todolist` ,
+        fetch(`${process.env.REACT_APP_BASE_URL}/todolist`,
             {method: 'DELETE'})
             .then(response => {
-                if (response.status=== 200) {
+                if (response.status === 200) {
                     return response.json()
                 }
                 throw new Error("Da stimmt doch was nicht")
             })
-            .then((toDosFromBackend : Array<ToDo>) => setToDos(toDosFromBackend))
+            .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend))
             .catch((ev: Error) => setErrorMessage(ev.message))
     }
 
@@ -41,20 +43,31 @@ export default function ToDoList() {
         fetchAll();
     }, []);
 
+    useEffect(() =>{
+        localStorage.setItem("task", task)
+    }, [task])
+
+    useEffect(() =>{
+        localStorage.setItem("date", date)
+    }, [date])
+
     useEffect(() => {
-        setTimeout(() => {setErrorMessage('')}, 20000)
+        setTimeout(() => {
+            setErrorMessage('')
+        }, 20000)
     })
 
     return (
         <div className={'todo-list'}>
             <div>
-                <ToDoForm onToDoCreation={setToDos} />
+                <ToDoForm onToDoCreation={setToDos}/>
             </div>
             <div>
                 <button onClick={deleteChecked}>{t('done-button')}</button>
             </div>
             <ul>
-            {toDos.map(task => <li key={task.id}><ToDoElement toDoItem={task} onToDoDeletion={fetchAll} onToDoChange={setToDos}/></li>)}
+                {toDos.map(task => <li key={task.id}><ToDoElement toDoItem={task} onToDoDeletion={fetchAll}
+                                                                  onToDoChange={setToDos}/></li>)}
             </ul>
             <div className="get-error">{errorMessage}</div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link,Outlet} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 
@@ -12,6 +12,7 @@ function App() {
         <div>
             <h1>{t('headline')}</h1>
             <Link to="/ToDoDetails">{t('detail-link')}</Link>
+            <div><Outlet/></div>
         </div>
     );
 }

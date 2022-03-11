@@ -47,7 +47,7 @@ export default function ToDoElement(props: ToDoElementProps) {
                 }
                 throw new Error("Ändern fällt aus, weil ist nicht!")
             })
-            .then((toDosFromBackend: Array<ToDo>) => {
+            .then(() => {
                 props.onToDoChange();
                 setEditMode(false);
             })

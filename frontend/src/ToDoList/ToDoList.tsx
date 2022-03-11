@@ -10,8 +10,6 @@ export default function ToDoList() {
 
     const [toDos, setToDos] = useState([] as Array<ToDo>)
     const [errorMessage, setErrorMessage] = useState('')
-    const [task, getTask] = useState(localStorage.getItem("task") ?? '');
-    const [date, getDate] = useState(localStorage.getItem("date") ?? '')
 
 
     const fetchAll = () => {
@@ -42,14 +40,6 @@ export default function ToDoList() {
     useEffect(() => {
         fetchAll();
     }, []);
-
-    useEffect(() =>{
-        localStorage.setItem("task", task)
-    }, [task])
-
-    useEffect(() =>{
-        localStorage.setItem("date", date)
-    }, [date])
 
     useEffect(() => {
         setTimeout(() => {

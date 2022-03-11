@@ -72,7 +72,7 @@ public class ToDoServiceTest {
 
         toDoService.deleteToDo(id);
 
-        verify(repo).delete(id);
+        verify(repo).deleteById(id);
     }
 
     @Test

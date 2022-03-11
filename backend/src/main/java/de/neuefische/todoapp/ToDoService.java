@@ -30,7 +30,7 @@ public class ToDoService {
     }
 
     public void deleteToDo(String id) {
-        toDoRepo.delete(id);
+        toDoRepo.deleteById(id);
     }
 
     public Optional<ToDos> changeToDo(String id, ToDos toDos) {
@@ -44,7 +44,7 @@ public class ToDoService {
                 .stream()
                 .filter(toDos -> toDos.getStatus() == ToDoStatus.Done)
                 .toList()
-                .forEach(toDos -> toDoRepo.delete(toDos.getId()));
+                .forEach(toDos -> toDoRepo.deleteById(toDos.getId()));
     }
 
 }

@@ -5,5 +5,4 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Repository
 public interface ToDoRepo extends MongoRepository<ToDos, String>{
-    void delete(String id);
 }

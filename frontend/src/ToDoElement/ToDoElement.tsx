@@ -1,5 +1,5 @@
-import {Status, ToDo} from "./model";
-import {useState} from "react";
+import {Status, ToDo} from "../model";
+import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
 
@@ -16,13 +16,21 @@ export default function ToDoElement(props: ToDoElementProps) {
     const [toDoToEdit, setToDoToEdit] = useState(props.toDoItem.toDo);
     const [dateToEdit, setDateToEdit] = useState(props.toDoItem.date);
     const [editMode, setEditMode] = useState(false);
+    const [errorMessage, setErrorMessage] =useState('')
 
     const deleteToDo = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/todolist/${props.toDoItem.id}`,
             {
                 method: 'DELETE'
             })
-            .then(() => props.onToDoDeletion());
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                throw new Error("Löschen lief schief!")
+            })
+            .then(() => props.onToDoDeletion())
+            .catch((ev:Error) => setErrorMessage(ev.message))
     };
 
     const fetchToEdit = (ToDoElement: ToDo) => {
@@ -33,11 +41,17 @@ export default function ToDoElement(props: ToDoElementProps) {
             },
             body: JSON.stringify(ToDoElement)
         })
-            .then(response => response.json())
+            .then(response => {
+                if(response.status === 200) {
+                    return response.json()
+                }
+                throw new Error("Ändern fällt aus, weil ist nicht!")
+            })
             .then((toDosFromBackend: Array<ToDo>) => {
                 props.onToDoChange(toDosFromBackend);
                 setEditMode(false);
-            });
+            })
+            .catch((ev:Error) => setErrorMessage(ev.message))
 
     }
 
@@ -59,6 +73,10 @@ export default function ToDoElement(props: ToDoElementProps) {
         })
     }
 
+    useEffect(() => {
+        setTimeout(() => {setErrorMessage('')}, 5000)
+    })
+
     return (
         <div>
             {
@@ -68,14 +86,16 @@ export default function ToDoElement(props: ToDoElementProps) {
                         <input type={'text'} value={toDoToEdit} onChange={event => setToDoToEdit(event.target.value)}/>
                         <input type={'text'} value={dateToEdit}
                                onChange={event2 => setDateToEdit(event2.target.value)}/>
-                        <button onClick={editToDo}>Pass mich an!</button>
+                        <button onClick={editToDo}>{t('change-button')}</button>
+                        <div>{errorMessage}</div>
                     </div>
                     :
                     <div>
                         <span className={props.toDoItem.status === Status.Done ? 'selected' : ''}
-                              onClick={toggle}>{props.toDoItem.toDo} </span>
+                              onClick={toggle}>{props.toDoItem.toDo}</span>
                         <button onClick={() => setEditMode(true)}>{t('change')}</button>
                         <button onClick={deleteToDo}>{t('delete')}</button>
+                        <div>{errorMessage}</div>
                     </div>
 
             }

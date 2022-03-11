@@ -4,6 +4,8 @@
   "done-button": "The job is done!",
   "delete": "Delete!",
   "date": "Until when?",
-  "send": "Enter!"
-
+  "send": "Enter!",
+  "change-button": "Confirm changes!",
+  "detail-button": "This way, friendo!",
+  "headline": "My little Helper"
 }

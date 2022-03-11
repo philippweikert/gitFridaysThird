@@ -1,8 +1,11 @@
 {
-  "change": "Mainīt !",
+  "change": "Mainīt!",
   "task": "Ko man darīt?",
   "done-button": "Pabeigts!",
   "delete": "Dzēst",
   "date": "Lidz?",
-  "send": "Ievade"
+  "send": "Ievade",
+  "change-button": "Mainīt ievadi!",
+  "detail-button": "Šādā veidā!",
+  "headline": "Mans mazas palīgs"
 }

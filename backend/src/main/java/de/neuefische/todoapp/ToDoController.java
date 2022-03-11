@@ -2,6 +2,7 @@ package de.neuefische.todoapp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -21,8 +22,8 @@ public class ToDoController {
     }
 
     @GetMapping("/{id}")
-    public ToDos getToDo(@PathVariable String id){
-        return toDoService.getToDos(id);
+    public ResponseEntity<ToDos> getToDo(@PathVariable String id){
+        return ResponseEntity.of(toDoService.getToDos(id));
     }
 
     @PostMapping
@@ -33,9 +34,8 @@ public class ToDoController {
     }
 
     @DeleteMapping("/{id}")
-    public Collection<ToDos> deleteToDo (@PathVariable String id) {
-        toDoService.deleteToDo(id);
-        return toDoService.getToDos();
+    public void deleteToDo (@PathVariable String id) {
+        toDoService.getToDos(id);
     }
 
     @PutMapping("/{id}")

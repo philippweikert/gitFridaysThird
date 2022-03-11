@@ -13,14 +13,14 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<App/>}/>
-            <Route path='ToDoList' element={<ToDoList/>}/>
-            <Route path='ToDoList/:id' element={<ToDoDetails/>}/>
-            <Route path='*' element={<ToDoList/>}/>
-            </Routes>
+                    <Route path='ToDoList' element={<ToDoList/>}/>
+                    <Route path='ToDoList/:id' element={<ToDoDetails/>}/>
+                    <Route path='*' element={<ToDoList/>}/>
+                </Routes>
             </BrowserRouter>
         </Suspense>
     </React.StrictMode>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

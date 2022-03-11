@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 interface ToDoElementProps {
     toDoItem: ToDo;
     onToDoDeletion: () => void;
-    onToDoChange: (toDoItems: Array<ToDo>) => void;
+    onToDoChange: () => void;
 }
 
 export default function ToDoElement(props: ToDoElementProps) {
@@ -48,7 +48,7 @@ export default function ToDoElement(props: ToDoElementProps) {
                 throw new Error("Ändern fällt aus, weil ist nicht!")
             })
             .then((toDosFromBackend: Array<ToDo>) => {
-                props.onToDoChange(toDosFromBackend);
+                props.onToDoChange();
                 setEditMode(false);
             })
             .catch((ev:Error) => setErrorMessage(ev.message))

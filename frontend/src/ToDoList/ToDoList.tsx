@@ -33,7 +33,7 @@ export default function ToDoList() {
                 }
                 throw new Error("Da stimmt doch was nicht")
             })
-            .then((toDosFromBackend: Array<ToDo>) => setToDos(toDosFromBackend))
+            .then(fetchAll)
             .catch((ev: Error) => setErrorMessage(ev.message))
     }
 

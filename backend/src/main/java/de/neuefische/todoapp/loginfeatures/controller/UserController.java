@@ -1,12 +1,14 @@
-package de.neuefische.todoapp.loginfeatures;
+package de.neuefische.todoapp.loginfeatures.controller;
 
+import de.neuefische.todoapp.loginfeatures.Service.UserService;
+import de.neuefische.todoapp.loginfeatures.data.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/todolist/createuser")
+@RequestMapping("/todolist/create")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -15,7 +17,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser (@RequestBody User appUser) {
+    public AppUser createUser (@RequestBody AppUser appUser) {
         appUser.setUsername(passwordEncoder.encode(appUser.getUserpassword()));
         return userService.createUser(appUser);
     }

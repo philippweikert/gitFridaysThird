@@ -1,4 +1,4 @@
-package de.neuefische.todoapp.todofunctions;
+package de.neuefische.todoapp.todofunctionalities;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

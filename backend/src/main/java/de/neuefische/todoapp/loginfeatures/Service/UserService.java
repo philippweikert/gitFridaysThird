@@ -17,7 +17,7 @@ public class UserService {
         return userRepo.save(appUser);
     }
 
-    public Optional<AppUser> findByUserName(String username) {
-        return userRepo.findByUserName(username);
+    public Optional<AppUser> findByUsername(String username) {
+        return userRepo.findByUsername(username);
     }
 }

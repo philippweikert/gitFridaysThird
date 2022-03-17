@@ -18,7 +18,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public AppUser createUser (@RequestBody AppUser appUser) {
-        appUser.setUsername(passwordEncoder.encode(appUser.getUserpassword()));
+        appUser.setUserpassword(passwordEncoder.encode(appUser.getUserpassword()));
         return userService.createUser(appUser);
     }
 }

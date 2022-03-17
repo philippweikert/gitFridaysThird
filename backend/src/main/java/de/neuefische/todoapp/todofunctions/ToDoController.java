@@ -1,4 +1,4 @@
-package de.neuefische.todoapp;
+package de.neuefische.todoapp.todofunctions;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,7 @@ public class ToDoController {
 
     @DeleteMapping("/{id}")
     public void deleteToDo (@PathVariable String id) {
-        toDoService.getToDos(id);
+        toDoService.deleteToDo(id);
     }
 
     @PutMapping("/{id}")

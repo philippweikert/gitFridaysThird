@@ -1,4 +1,4 @@
-package de.neuefische.todoapp;
+package de.neuefische.todoapp.todofunctions;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

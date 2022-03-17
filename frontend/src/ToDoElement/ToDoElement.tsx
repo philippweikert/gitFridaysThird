@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 interface ToDoElementProps {
     toDoItem: ToDo;
     onToDoDeletion: () => void;
-    onToDoChange: () => void;
+    onToDoChange: (toDoItems: Array<ToDo>) => void;
 }
 
 export default function ToDoElement(props: ToDoElementProps) {
@@ -24,10 +24,9 @@ export default function ToDoElement(props: ToDoElementProps) {
                 method: 'DELETE'
             })
             .then(response => {
-                if (response.status === 200) {
-                    return response.json()
-                }
-                throw new Error("Löschen lief schief!")
+                if (response.status !== 200) {
+
+                throw new Error("Löschen lief schief!")}
             })
             .then(() => props.onToDoDeletion())
             .catch((ev:Error) => setErrorMessage(ev.message))
@@ -47,8 +46,8 @@ export default function ToDoElement(props: ToDoElementProps) {
                 }
                 throw new Error("Ändern fällt aus, weil ist nicht!")
             })
-            .then(() => {
-                props.onToDoChange();
+            .then((toDosFromBackend: Array<ToDo>) => {
+                props.onToDoChange(toDosFromBackend);
                 setEditMode(false);
             })
             .catch((ev:Error) => setErrorMessage(ev.message))

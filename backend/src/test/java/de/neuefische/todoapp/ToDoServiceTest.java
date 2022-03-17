@@ -1,5 +1,9 @@
 package de.neuefische.todoapp;
 
+import de.neuefische.todoapp.todofunctions.ToDoRepo;
+import de.neuefische.todoapp.todofunctions.ToDoService;
+import de.neuefische.todoapp.todofunctions.ToDoStatus;
+import de.neuefische.todoapp.todofunctions.ToDos;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

@@ -1,4 +1,4 @@
-package de.neuefische.todoapp;
+package de.neuefische.todoapp.todofunctions;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -40,7 +40,7 @@ export default function LoginElement() {
     const logUserIn = (event : FormEvent) => {
         event.preventDefault()
         setError('')
-        axios.post(`/todolist/login`, {'username':userName, 'password':userPassword})
+        axios.post(`${process.env.REACT_APP_BASE_URL}/todolist/login`, {'username':userName, 'password':userPassword})
             .then(response => response.data)
             .then(data => setToken(data.token))
             .catch(e => setError(e.message))

@@ -2,19 +2,24 @@ package de.neuefische.todoapp.todofunctionalities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
+@Document
 
-public class ToDos implements Comparable<ToDos> {
+public class ToDo implements Comparable<ToDo> {
 
+    @Id
     private String id;
     private String toDo = "";
     private ToDoStatus status = ToDoStatus.Open;
     private String date = "";
+    private String username;
 
     @Override
-    public int compareTo(ToDos toDos){
+    public int compareTo(ToDo toDos){
         if (status == toDos.getStatus()){
             return 0;
         } else if (status == ToDoStatus.Open) {
@@ -23,7 +28,7 @@ public class ToDos implements Comparable<ToDos> {
         return 1;
     }
 
-    public ToDos updateToDo(ToDos toDos) {
+    public ToDo updateToDo(ToDo toDos) {
         setToDo(toDos.getToDo());
         setDate(toDos.getDate());
         setStatus(toDos.getStatus());

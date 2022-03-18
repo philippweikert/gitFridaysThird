@@ -11,7 +11,7 @@ function App() {
     return (
         <div>
             <h1>{t('headline')}</h1>
-            <Link to="/ToDoDetails">{t('detail-link')}</Link>
+            <Link to="/LoginElement">{t('detail-link')}</Link>
             <div><Outlet/></div>
         </div>
     );

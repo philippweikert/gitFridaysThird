@@ -1,9 +1,9 @@
 package de.neuefische.todoapp;
 
+import de.neuefische.todoapp.todofunctionalities.ToDo;
 import de.neuefische.todoapp.todofunctionalities.ToDoRepo;
 import de.neuefische.todoapp.todofunctionalities.ToDoService;
 import de.neuefische.todoapp.todofunctionalities.ToDoStatus;
-import de.neuefische.todoapp.todofunctionalities.ToDos;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -18,7 +18,7 @@ public class ToDoServiceTest {
 
     @Test
     void shouldAddNewToDo() {
-        ToDos toDos1 = new ToDos();
+        ToDo toDos1 = new ToDo();
         toDos1.setToDo("Aufräumen");
         toDos1.setStatus(ToDoStatus.Open);
 
@@ -30,30 +30,30 @@ public class ToDoServiceTest {
         verify(repo).save(toDos1);
     }
 
-    @Test
+   /* @Test
     void shouldGetAllToDos(){
-        ToDos toDos1 = new ToDos();
+        ToDo toDos1 = new ToDo();
         toDos1.setToDo("Aufräumen");
         toDos1.setStatus(ToDoStatus.Open);
 
-        ToDos toDos2 = new ToDos();
+        ToDo toDos2 = new ToDo();
         toDos2.setToDo("Putzen");
         toDos2.setStatus(ToDoStatus.Open);
 
-        List<ToDos> toDosList = List.of(toDos1, toDos2);
+        List<ToDo> toDosList = List.of(toDos1, toDos2);
         ToDoRepo repo = Mockito.mock(ToDoRepo.class);
         Mockito.when(repo.findAll()).thenReturn(toDosList);
 
         ToDoService toDoService = new ToDoService(repo);
 
-        Collection<ToDos> actual = toDoService.getToDos();
+        Collection<ToDo> actual = toDoService.getToDos();
 
         assertThat(actual).isEqualTo(toDosList);
-    }
+    } */
     /*
     @Test
     void shouldGetMeOneToDo(){
-        ToDos toDos1 = new ToDos();
+        ToDo toDos1 = new ToDo();
         toDos1.setToDo("Aufräumen");
         toDos1.setStatus(ToDoStatus.Open);
 
@@ -62,7 +62,7 @@ public class ToDoServiceTest {
 
         ToDoService toDoService = new ToDoService(repo);
 
-        Optional<ToDos> actual = toDoService.getToDos(toDos1.getId());
+        Optional<ToDo> actual = toDoService.getToDos(toDos1.getId());
 
         assertThat(actual).isEqualTo(toDos1);
     }*/
@@ -81,12 +81,12 @@ public class ToDoServiceTest {
 
     @Test
     void shouldChangeToDo(){
-        ToDos toDos1 = new ToDos();
+        ToDo toDos1 = new ToDo();
         toDos1.setId("1898");
         toDos1.setToDo("Aufräumen");
         toDos1.setStatus(ToDoStatus.Open);
 
-        ToDos savedToDos = new ToDos();
+        ToDo savedToDos = new ToDo();
         savedToDos.setId("1898");
         savedToDos.setToDo("Aufräumen");
         savedToDos.setStatus(ToDoStatus.Open);
@@ -103,23 +103,23 @@ public class ToDoServiceTest {
     /*
     @Test
     void shouldDeleteCheckedToDos() {
-        ToDos toDos1 = new ToDos();
+        ToDo toDos1 = new ToDo();
         toDos1.setToDo("ToDo1");
         toDos1.setStatus(ToDoStatus.Open);
 
-        ToDos toDos2 = new ToDos();
+        ToDo toDos2 = new ToDo();
         toDos2.setToDo("ToDo2");
         toDos2.setStatus(ToDoStatus.Done);
 
-        ToDos toDos3 = new ToDos();
+        ToDo toDos3 = new ToDo();
         toDos3.setToDo("ToDo3");
         toDos3.setStatus(ToDoStatus.Open);
 
-        ToDos toDos4 = new ToDos();
+        ToDo toDos4 = new ToDo();
         toDos4.setToDo("ToDo4");
         toDos4.setStatus(ToDoStatus.Done);
 
-        List<ToDos> toDosList = List.of(toDos1, toDos2, toDos3, toDos4);
+        List<ToDo> toDosList = List.of(toDos1, toDos2, toDos3, toDos4);
         ToDoRepo repo = Mockito.mock(ToDoRepo.class);
         Mockito.when(repo.findAll()).thenReturn(toDosList);
 

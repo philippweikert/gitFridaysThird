@@ -11,7 +11,7 @@ public class AppUser {
     @Id
     private String userid;
     private String username;
-    private String userpassword;
+    private String password;
     private String role;
 
 

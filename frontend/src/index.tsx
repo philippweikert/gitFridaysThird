@@ -6,6 +6,7 @@ import './i18n';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ToDoList from "./ToDoList/ToDoList";
 import ToDoDetails from "./ToDoDetails";
+import LoginElement from "./LoginElement";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
                     <Route path="/" element={<App/>}/>
                     <Route path='ToDoList' element={<ToDoList/>}/>
                     <Route path='ToDoList/:id' element={<ToDoDetails/>}/>
+                    <Route path='LoginElement' element={<LoginElement/>}/>
                     <Route path='*' element={<ToDoList/>}/>
                 </Routes>
             </BrowserRouter>

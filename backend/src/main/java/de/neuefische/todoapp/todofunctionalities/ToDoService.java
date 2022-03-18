@@ -14,18 +14,18 @@ public class ToDoService {
     private final ToDoRepo toDoRepo;
 
 
-    public void createToDo(ToDos toDos) {
+    public void createToDo(ToDo toDos) {
         toDoRepo.save(toDos);
     }
 
-    public Collection<ToDos> getToDos() {
-        return toDoRepo.findAll()
+    public Collection<ToDo> getToDos(String username) {
+        return toDoRepo.findAllByUsername(username)
                 .stream()
                 .sorted()
                 .toList();
     }
 
-    public Optional<ToDos> getToDos(String id) {
+    public Optional<ToDo> getToDo(String id) {
         return toDoRepo.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class ToDoService {
         toDoRepo.deleteById(id);
     }
 
-    public Optional<ToDos> changeToDo(String id, ToDos toDos) {
+    public Optional<ToDo> changeToDo(String id, ToDo toDos) {
         return toDoRepo.findById(id)
                 .map(tD -> tD.updateToDo(toDos))
                 .map(toDoRepo::save);
